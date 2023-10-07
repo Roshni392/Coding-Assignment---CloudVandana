@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Survey Form</title>
+    <style>
+        /* Internal CSS */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #007bff;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #007bff;
+            text-align: center;
+            color: black;
+            
+        }
+
+        .form-container {
+            width: 80%;
+            max-width: 600px; /* Limit form width for better readability */
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Style for labels */
+        label {
+            color: black; /* Label text color */
+        }
+
+        /* Style for input fields */
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid black; /* Border color */
+            border-radius: 5px;
+            background-color: white;
+            margin-bottom: 15px; /* Add spacing between input fields */
+        }
+
+        /* Style for buttons */
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px; /* Add spacing above buttons */
+        }
+
+        /* Add your additional styles here */
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Survey Form</h1> <!-- Heading at the top of the screen -->
+    </div>
+    <div class="form-container">
+        <form id="surveyForm" onsubmit="return false;">
+            <!-- Your form fields and content here -->
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required>
+
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="country">Country:</label>
+            <select id="country" name="country" required>
+                <option value="India">India</option>
+                <option value="Russia">Russia</option>
+                <option value="United State">United State</option>
+                <!-- Add more country options as needed -->
+            </select>
+
+            <label>Gender:</label><br>
+            <input type="checkbox" id="male" name="gender" value="Male">
+            <label for="male">Male</label>
+            <input type="checkbox" id="female" name="gender" value="Female">
+            <label for="female">Female</label>
+            <br></br>
+            <label for="profession">Profession:</label>
+            <input type="text" id="profession" name="profession" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="mobile">Mobile Number:</label>
+            <input type="tel" id="mobile" name="mobile" required>
+
+            <button type="submit" onclick="submitForm()">Submit</button>
+            <button type="button" onclick="resetForm()">Reset</button>
+        </form>
+    </div>
+    <script>
+        function submitForm() {
+            var firstName = document.getElementById('firstName').value;
+            var lastName = document.getElementById('lastName').value;
+            var dob = document.getElementById('dob').value;
+            var country = document.getElementById('country').value;
+            var gender = getSelectedCheckboxes('gender');
+            var profession = document.getElementById('profession').value;
+            var email = document.getElementById('email').value;
+            var mobile = document.getElementById('mobile').value;
+
+            var message = `
+                First Name: ${firstName}
+                Last Name: ${lastName}
+                Date of Birth: ${dob}
+                Country: ${country}
+                Gender: ${gender}
+                Profession: ${profession}
+                Email: ${email}
+                Mobile Number: ${mobile}
+            `;
+
+            alert(message);
+            document.getElementById('surveyForm').reset();
+        }
+
+        function resetForm() {
+            document.getElementById('surveyForm').reset();
+        }
+
+        function getSelectedCheckboxes(name) {
+            var checkboxes = document.querySelectorAll('input[name="' + name + '"]:checked');
+            var values = Array.from(checkboxes).map(checkbox => checkbox.value);
+            return values.join(', ');
+        }
+    </script>
+</body>
+</html>
