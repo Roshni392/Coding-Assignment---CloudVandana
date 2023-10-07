@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sort Array in Descending Order</title>
+</head>
+<body>
+
+<button onclick="sortDescending()">Sort Array in Descending Order</button>
+
+<script>
+// Take user input for a string
+let userInputString = prompt("Enter a string:");
+
+// Take user input for an array of numbers
+let userInputArray = prompt("Enter numbers separated by commas:");
+
+// Convert the string input into an array of characters and sort it
+let sortedString = userInputString.split('').sort().join('');
+
+// Convert the array input into an array of numbers and sort it in descending order
+let numbersArray = userInputArray.split(',').map(Number);
+numbersArray.sort(function(a, b) {
+  return b - a;
+});
+
+// Display the sorted string and array
+console.log("Sorted String:", sortedString);
+console.log("Sorted Array:", numbersArray);
+</script>
+
+</body>
+</html>
